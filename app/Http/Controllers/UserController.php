@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+
+class UserController extends Controller
+{
+    public function register(Request $request) {
+
+        // Recoger los datos del usuario por post
+        $json = $request->input('json', null);
+        $params = json_decode($json, true);
+
+        if(!empty($params)) {
+            // Limpiar datos
+            $params = array_map('trim', $params);
+    
+            // Validar datos
+            $validate = \Validator::make($params, [
+                'name'              => 'required|alpha',
+                'last_name'         => 'required|alpha',
+                'second_last_name'  => 'required|alpha',
+                'gender'            => 'required|alpha',
+                'enrollment'        => 'required|alpha_num|unique:users',
+                'password'          => 'required'
+            ]);
+    
+            if($validate->fails()) {
+                $data = array(
+                    'status'    => 'error',
+                    'code'      => 404,
+                    'message'   => 'El usuario no se ha creado',
+                    'errors'    => $validate->errors()
+                );
+    
+            } else {
+                // Cifrar contrasena
+                $pwd = \hash('sha256', $params['password']);
+
+                // Crear el usuario
+                $user = new User();
+                $user->name             = $params['name'];
+                $user->last_name        = $params['last_name'];
+                $user->second_last_name = $params['second_last_name'];
+                $user->gender           = $params['gender'];
+                $user->role             = "ROLE_STUDENT";
+                $user->enrollment       = $params['enrollment'];
+                $user->password         = $pwd;
+
+                // Guardar usuario
+                $user->save();
+
+                $data = array(
+                    'status'    => 'success',
+                    'code'      => 200,
+                    'message'   => 'El usuario se ha creado correctamente',
+                    'user'      => $user
+                );
+            }
+        } else {
+            $data = array(
+                'status'    => 'error',
+                'code'      => 404,
+                'message'   => 'Los datos enviados no son correctos',
+            );
+        }
+        
+        return response()->json($data, $data['code']);
+    }
+
+    public function login(Request $request) {
+        $jwtAuth = new \JwtAuth();
+        $json = $request->input('json', null);
+        $params = json_decode($json, true);
+
+        $validate = \Validator::make($params, [
+            'enrollment'    => 'required|alpha_num',
+            'password'      => 'required'
+        ]);
+
+        if($validate->fails()) {
+            $signup = array(
+                'status'    => 'error',
+                'code'      => 404,
+                'message'   => 'El usuario no se ha podido identificar',
+                'errors'    => $validate->errors()
+            );
+
+        } else {
+            $pwd = \hash('sha256', $params['password']);
+            $signup = $jwtAuth->signup($params['enrollment'], $pwd);
+            if (!empty($params['gettoken'])) {
+                $signup = $jwtAuth->signup($params['enrollment'], $pwd, true);
+            }
+
+        }
+        return response()->json($signup, 200);
+    }
+}

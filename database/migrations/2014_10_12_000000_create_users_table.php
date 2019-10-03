@@ -16,10 +16,18 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('last_name');
+            $table->string('second_last_name');
+            $table->enum('role', ['ROLE_STUDENT', 'ROLE_TEACHER']);
+            $table->enum('gender', ['Hombre', 'Mujer']);
+            $table->date('birthday')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('curp')->nullable();
+            $table->string('insurance')->nullable();
+            $table->string('enrollment', 10)->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('remember_token')->nullable();
+            $table->date('admissoion_date')->nullable();
             $table->timestamps();
         });
     }
