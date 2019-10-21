@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('enrollment', 10)->unique();
             $table->string('password');
             $table->string('remember_token')->nullable();
-            $table->date('admissoion_date')->nullable();
+            $table->date('admission_date')->nullable();
             $table->timestamps();
         });
     }
