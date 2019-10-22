@@ -15,7 +15,7 @@ class CreateCyclesTable extends Migration
     {
         Schema::create('cycles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('level_id')->unsigned();
+            $table->BigInteger('level_id')->unsigned();
             $table->foreign('level_id')->references('id')->on('levels');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

@@ -15,6 +15,12 @@ class CreateUserDocumentsTable extends Migration
     {
         Schema::create('user_documents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id', 10);
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->BigInteger('document_id')->unsigned();
+            $table->foreign('document_id')->references('id')->on('documents');
+            $table->datetime('date');
+            $table->enum('status',['Entregado', 'Por entregar']);
             $table->timestamps();
         });
     }
