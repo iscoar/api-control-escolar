@@ -15,6 +15,12 @@ class CreateSubjectTeacherGroupsTable extends Migration
     {
         Schema::create('subject_teacher_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->BigInteger('subject_id')->unsigned();
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->string('teacher_id', 10);
+            $table->foreign('teacher_id')->references('id')->on('users');
+            $table->BigInteger('group_id')->unsigned();
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreateClassroomsTable extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('description', 20)->nullable();
+            $table->BigInteger('building_id')->unsigned();
+            $table->foreign('building_id')->references('id')->on('buildings');
             $table->timestamps();
         });
     }

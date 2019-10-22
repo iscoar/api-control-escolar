@@ -15,6 +15,9 @@ class CreateStudyPlansTable extends Migration
     {
         Schema::create('study_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->BigInteger('career_id')->unsigned();
+            $table->foreign('career_id')->references('id')->on('careers');
+            $table->string('name', 30)->nullable();
             $table->timestamps();
         });
     }

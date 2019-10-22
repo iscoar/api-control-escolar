@@ -15,6 +15,11 @@ class CreateEvaluationCriteriaPercentagesTable extends Migration
     {
         Schema::create('evaluation_criteria_percentages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->BigInteger('evaluation_levels_id')->unsigned();
+            $table->foreign('evaluation_levels_id')->references('id')->on('group_evaluation_levels');
+            $table->BigInteger('evaluation_criteria_id')->unsigned();
+            $table->foreign('evaluation_criteria_id')->references('id')->on('evaluation_criteria');
+            $table->double('percentage', 3,2);
             $table->timestamps();
         });
     }

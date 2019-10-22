@@ -15,6 +15,8 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 50)->nullable();
+            $table->string('comments', 50)->nullable();
             $table->timestamps();
         });
     }

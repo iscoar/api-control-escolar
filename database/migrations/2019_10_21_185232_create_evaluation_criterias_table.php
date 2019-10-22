@@ -15,6 +15,7 @@ class CreateEvaluationCriteriasTable extends Migration
     {
         Schema::create('evaluation_criterias', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 50)->nullable();
             $table->timestamps();
         });
     }

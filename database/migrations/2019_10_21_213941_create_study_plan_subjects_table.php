@@ -15,6 +15,12 @@ class CreateStudyPlanSubjectsTable extends Migration
     {
         Schema::create('study_plan_subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->BigInteger('study_plan_id')->unsigned();
+            $table->foreign('study_plan_id')->references('id')->on('study_plans');
+            $table->BigInteger('grade_id')->unsigned();
+            $table->foreign('grade_id')->references('id')->on('grades');
+            $table->BigInteger('subject_id')->unsigned();
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();
         });
     }
