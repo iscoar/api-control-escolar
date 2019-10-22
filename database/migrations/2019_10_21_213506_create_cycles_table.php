@@ -13,10 +13,9 @@ class CreateCyclesTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
         Schema::create('cycles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('level_id');
+            $table->unsignedBigInteger('level_id')->unsigned();
             $table->foreign('level_id')->references('id')->on('levels');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
