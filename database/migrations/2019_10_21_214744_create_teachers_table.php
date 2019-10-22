@@ -15,6 +15,11 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('user_id',10)->unique();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('professional_id')->nullable();
+            $table->enum('scholarship',['Licenciatura', 'Ingeniería', 'Maestría', 'Especialidad', 'Doctorado']);
+            $table->string('career', 60);
             $table->timestamps();
         });
     }

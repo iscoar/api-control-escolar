@@ -15,6 +15,9 @@ class CreateTownshipsTable extends Migration
     {
         Schema::create('townships', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name',50);
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('state_id')->references('id')->on('states');
             $table->timestamps();
         });
     }

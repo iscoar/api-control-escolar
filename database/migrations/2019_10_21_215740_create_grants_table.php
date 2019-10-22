@@ -15,6 +15,11 @@ class CreateGrantsTable extends Migration
     {
         Schema::create('grants', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name',30);
+            $table->enum('type',['Interna', 'Externa']);
+            $table->enum('discount_type',['Percentage', 'Cash']);
+            $table->double('amount',6,2);
+            $table->enum('duration',['Level', 'Cycle']);
             $table->timestamps();
         });
     }

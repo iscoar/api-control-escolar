@@ -15,6 +15,10 @@ class CreateTuitionFeesTable extends Migration
     {
         Schema::create('tuition_fees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('payment_concept_id');
+            $table->foreign('payment_concept_id')->references('id')->on('payment_concepts');
+            $table->enum('discount_type',['Porcentaje', 'Efectivo']);
+            $table->double('amount',8,2);
             $table->timestamps();
         });
     }

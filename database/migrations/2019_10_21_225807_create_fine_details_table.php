@@ -15,6 +15,10 @@ class CreateFineDetailsTable extends Migration
     {
         Schema::create('fine_details', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('payment_concept_id');
+            $table->foreign('payment_concept_id')->references('id')->on('payment_concepts');
+            $table->double('amount',8,2);
+            $table->smallInteger('days_to_apply');
             $table->timestamps();
         });
     }
