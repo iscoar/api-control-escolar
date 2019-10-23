@@ -15,8 +15,8 @@ class CreateStudentScoresTable extends Migration
     {
         Schema::create('student_scores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('evaluation_criteria_id')->unsigned();
-            $table->foreign('evaluation_criteria_id')->references('id')->on('evaluation_criteria_percentages');
+            $table->BigInteger('evaluation_criteria_percentage_id')->unsigned();
+            $table->foreign('evaluation_criteria_percentage_id')->references('id')->on('evaluation_criteria_percentages');
             $table->string('student_id', 10);
             $table->foreign('student_id')->references('id')->on('users');
             $table->double('score', 2,2);

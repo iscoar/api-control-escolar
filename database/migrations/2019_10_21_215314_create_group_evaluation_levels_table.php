@@ -15,10 +15,10 @@ class CreateGroupEvaluationLevelsTable extends Migration
     {
         Schema::create('group_evaluation_levels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('stg_id')->unsigned();
-            $table->foreign('stg_id')->references('id')->on('subject_teacher_groups');
-            $table->BigInteger('level_evaluation_id')->unsigned();
-            $table->foreign('level_evaluation_id')->references('id')->on('evaluation_levels');
+            $table->unsignedBigInteger('subject_teacher_group_id');
+            $table->foreign('subject_teacher_group_id')->references('id')->on('subject_teacher_groups');
+            $table->unsignedBigInteger('evaluation_level_id');
+            $table->foreign('evaluation_level_id')->references('id')->on('evaluation_levels');
             $table->timestamps();
         });
     }
