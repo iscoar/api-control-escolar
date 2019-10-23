@@ -13,9 +13,9 @@ class SubjectTeacherGroup extends Model
         return $this->belongsTo('App\Subject');
     }
 
-    public function teacher()
+    public function users()
     {
-        return $this->belongsTo('App\Teacher');
+        return $this->belongsTo('App\User');
     }
 
     public function group()
