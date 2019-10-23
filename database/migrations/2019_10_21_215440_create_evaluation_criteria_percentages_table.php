@@ -17,7 +17,7 @@ class CreateEvaluationCriteriaPercentagesTable extends Migration
             $table->bigIncrements('id');
             $table->BigInteger('evaluation_levels_id')->unsigned();
             $table->foreign('evaluation_levels_id')->references('id')->on('group_evaluation_levels');
-            $table->BigInteger('evaluation_criteria_id')->unsigned();
+            $table->unsignedBigInteger('evaluation_criteria_id');
             $table->foreign('evaluation_criteria_id')->references('id')->on('evaluation_criteria');
             $table->double('percentage', 3,2);
             $table->timestamps();

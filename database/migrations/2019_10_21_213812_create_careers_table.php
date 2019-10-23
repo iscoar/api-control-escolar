@@ -15,7 +15,7 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('level_id')->unsigned();
+            $table->bigInteger('level_id')->unsigned();
             $table->foreign('level_id')->references('id')->on('levels');
             $table->string('name', 50)->nullable();
             $table->enum('turn', ['Matutino', 'Vespertino', 'Despresurizado']);

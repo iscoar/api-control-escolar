@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Building extends Model
 {
-    protected $table = 'building'; //opcional
-    protected $primaryKey = 'id'; //opcional
+    protected $table = 'building';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name'
