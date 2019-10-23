@@ -12,5 +12,4 @@ class Grant extends Model
     {
         return $this->hasMany('App\StudentGrant');
     }
-    //
 }

@@ -8,17 +8,17 @@ class StudentGrant extends Model
 {
     protected $guarded = [];  
 
-    public function users()
+    public function student()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'student_id');
     }
-    public function grants()
+    public function grant()
     {
         return $this->belongsTo('App\Grant');
     }
-    public function cycles()
+    public function cycle()
     {
         return $this->belongsTo('App\Cycle');
     }
-    //
+    
 }

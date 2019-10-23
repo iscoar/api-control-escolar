@@ -8,13 +8,12 @@ class StudentGroup extends Model
 {
     protected $guarded = [];  
 
-    public function groups()
+    public function group()
     {
         return $this->belongsTo('App\Group');
     }
-    public function users()
+    public function student()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'student_id');
     }
-    //
 }

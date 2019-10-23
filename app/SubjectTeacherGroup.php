@@ -13,9 +13,9 @@ class SubjectTeacherGroup extends Model
         return $this->belongsTo('App\Subject');
     }
 
-    public function users()
+    public function teacher()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'teacher_id');
     }
 
     public function group()
@@ -25,6 +25,6 @@ class SubjectTeacherGroup extends Model
 
     public function group_evaluation_levels()
     {
-        return $this->hasMany('App\GroupEvaluationLevel');
+        return $this->hasMany('App\GroupEvaluationLevel', 'stg_id');
     }
 }

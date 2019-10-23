@@ -8,7 +8,7 @@ class PaymentConcept extends Model
 {
     protected $guarded = [];  
 
-    public function cycles()
+    public function cycle()
     {
         return $this->belongsTo('App\Cycle');
     }

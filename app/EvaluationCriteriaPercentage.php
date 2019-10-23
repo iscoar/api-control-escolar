@@ -12,13 +12,13 @@ class EvaluationCriteriaPercentage extends Model
     {
         return $this->hasMany('App\StudentScore');
     }
-    public function group_evaluation_levels()
+    public function group_evaluation_level()
     {
         return $this->belongsTo('App\GroupEvaluationLevel');
     }
-    public function evaluation_criterias()
+    public function evaluation_criteria()
     {
         return $this->belongsTo('App\EvaluationCriteria');
     }
-    //
+    
 }

@@ -13,7 +13,7 @@ class Subject extends Model
         return $this->hasMany('App\StudyPlanSubject');
     }
 
-    public function subject_teacher_group()
+    public function subject_teacher_groups()
     {
         return $this->hasMany('App\SubjectTeacherGroup');
     }

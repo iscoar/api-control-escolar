@@ -8,11 +8,11 @@ class Student extends Model
 {
     protected $guarded = [];  
 
-    public function careers()
+    public function career()
     {
         return $this->belongsTo('App\Career');
     }
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -20,5 +20,5 @@ class Student extends Model
     {
         return $this->hasMany('App\Tutor');
     }
-    //
+
 }
