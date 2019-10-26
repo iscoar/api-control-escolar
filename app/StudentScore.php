@@ -10,7 +10,7 @@ class StudentScore extends Model
 
     public function evaluation_criteria_percentage()
     {
-        return $this->belongsTo('App\EvaluationCriteriaPercentage');
+        return $this->belongsTo('App\EvaluationCriteriaPercentage', 'ecp_id');
     }
     public function student()
     {

@@ -10,11 +10,11 @@ class GroupEvaluationLevel extends Model
 
     public function evaluation_criteria_percentages()
     {
-        return $this->hasMany('App\EvaluationCriteriaPercentage');
+        return $this->hasMany('App\EvaluationCriteriaPercentage', 'gel_id');
     }
     public function subject_teacher_group()
     {
-        return $this->belongsTo('App\SubjectTeacherGroup');
+        return $this->belongsTo('App\SubjectTeacherGroup', 'stg_id');
     }
     public function evaluation_level()
     {
