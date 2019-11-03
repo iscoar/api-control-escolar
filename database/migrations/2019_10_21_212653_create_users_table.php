@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('street')->nullable();
             $table->string('locality',60)->nullable();
             $table->string('neighborhood',70)->nullable();
-            $table->smallInteger('postal_code')->nullable();
+            $table->integer('postal_code')->nullable();
             $table->unsignedBigInteger('current_township_id');
             $table->foreign('current_township_id')->references('id')->on('townships');
             $table->unsignedBigInteger('birthday_place');
