@@ -28,6 +28,21 @@ class DatabaseSeeder extends Seeder
             StudyPlanSubjectsTableSeeder::class,
             ClassroomsTableSeeder::class,
             GroupsTableSeeder::class,
+            StudentsTableSeeder::class,
+            TeachersTableSeeder::class,
+            UsersDocumentSeeder::class,
+            TutorsTableSeeder::class,
+            StudentGroupsTableSeeder::class,
+            SubjectTeacherGroupsTableSeeder::class,
+            GroupEvaluationLevelsTableSeeder::class,
+            EvaluationCriteriaPercentagesTableSeeder::class,
+            StudentScoresTableSeeder::class,
+            GrantsTableSeeder::class,
+            StudentGrantsTableSeeder::class,
+            PaymentConceptsTableSeeder::class,
+            StudentPaymentsTableSeeder::class,
+            TuitionFeesTableSeeder::class,
+            FineDetailsTableSeeder::class
             ]);
     }
 }
