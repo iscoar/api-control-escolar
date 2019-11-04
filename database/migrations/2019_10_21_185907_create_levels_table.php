@@ -15,8 +15,8 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 30)->nullable();
-            $table->enum('academic_period', ['Mensual', 'Bimestre', 'Trimestre', 'Cuatrimestre', 'Semestre', 'Anual']);
+            $table->string('name', 30);
+            $table->enum('academic_period', ['MENSUAL', 'BIMESTRAL', 'TRIMESTRAL', 'CUATRIMESTRAL', 'SEMESTRAL', 'ANUAL']);
             $table->integer('duration');
             $table->double('minimum_score', 2,2);
             $table->double('minimum_attendance',3,2);
