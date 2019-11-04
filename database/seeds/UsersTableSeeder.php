@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
         ]);
          //Alumno
          DB::table('users')->insert([
-            'id' => 'R161364875',
+            'id' => 'R161364876',
             'role' => 'ROLE_STUDENT',
             'name' => 'EDGAR',
             'last_name' => 'ZACARÍAS',

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             GroupsTableSeeder::class,
             StudentsTableSeeder::class,
             TeachersTableSeeder::class,
-            UsersDocumentSeeder::class,
+            UserDocumentsTableSeeder::class,
             TutorsTableSeeder::class,
             StudentGroupsTableSeeder::class,
             SubjectTeacherGroupsTableSeeder::class,
