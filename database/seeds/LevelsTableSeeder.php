@@ -15,9 +15,9 @@ class LevelsTableSeeder extends Seeder
             'id' => 1,
             'name' => 'TSU',
             'academic_period' => 'CUATRIMESTRAL',
-            'duration' => '6',
-            'minimum_score' => '8.00',
-            'minimum_attendance' => '80',
+            'duration' => 6,
+            'minimum_score' => 8.00,
+            'minimum_attendance' => 80,
             'created_at' => now()
         ]);
 
@@ -25,9 +25,9 @@ class LevelsTableSeeder extends Seeder
             'id' => 2,
             'name' => 'LICENCIATURA',
             'academic_period' => 'CUATRIMESTRAL',
-            'duration' => '5',
-            'minimum_score' => '8.00',
-            'minimum_attendance' => '80',
+            'duration' => 5,
+            'minimum_score' => 8.00,
+            'minimum_attendance' => 80,
             'created_at' => now()
         ]);
     }

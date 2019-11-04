@@ -18,8 +18,8 @@ class CreateLevelsTable extends Migration
             $table->string('name', 30);
             $table->enum('academic_period', ['MENSUAL', 'BIMESTRAL', 'TRIMESTRAL', 'CUATRIMESTRAL', 'SEMESTRAL', 'ANUAL']);
             $table->integer('duration');
-            $table->double('minimum_score', 2,2);
-            $table->double('minimum_attendance',3,2);
+            $table->double('minimum_score',4,2);
+            $table->double('minimum_attendance',5,2);
             $table->timestamps();
         });
     }
