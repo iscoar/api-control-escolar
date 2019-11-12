@@ -13,7 +13,7 @@ class CareersTableSeeder extends Seeder
     {
         DB::table('careers')->insert([
             'id' => 1,
-            'name' => 'INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN',
+            'name' => 'TECNOLOGÍAS DE LA INFORMACIÓN',
             'level_id' => '2',
             'turn' => 'VESPERTINO',
             'acronym' => 'ITI',
