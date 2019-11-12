@@ -326,5 +326,41 @@ class SubjectsTableSeeder extends Seeder
             'name' => 'DIRECCIÓN DE EQUIPOS DE ALTO RENDIMIENTO',
             'created_at' => now()
         ]);
+        //SEP-DIC19
+        DB::table('subjects')->insert([
+            'id' => 62,
+            'name' => 'MODELADO DE PROCESOS DE NEGOCIOS',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 63,
+            'name' => 'DESARROLLO DE APLICACIONES WEB',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 64,
+            'name' => 'SEGURIDAD DE LA INFORMACIÓN',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 65,
+            'name' => 'TÓPICOS SELECTOS DE TI',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 66,
+            'name' => 'INTEGRADORA II',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 67,
+            'name' => 'INGLÉS IX',
+            'created_at' => now()
+        ]);
+        DB::table('subjects')->insert([
+            'id' => 68,
+            'name' => '	NEGOCIACIÓN EMPRESARIAL',
+            'created_at' => now()
+        ]);
     }
 }
