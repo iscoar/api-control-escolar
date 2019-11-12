@@ -8,9 +8,9 @@ class Grade extends Model
 {
     protected $guarded = [];  
     
-    public function study_plan_subjects()
+    public function study_plan_grades()
     {
-        return $this->hasMany('App\StudyPlanSubject');
+        return $this->hasMany('App\StudyPlanGrade');
     }
 
     public function groups()

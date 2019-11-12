@@ -8,6 +8,11 @@ class StudyPlanSubject extends Model
 {
     protected $guarded = [];  
     
+    public function study_plan_grade_subjects()
+    {
+        return $this->hasMany('App\StudyPlanGradeSubject','spg_id');
+    }
+    
     public function study_plan()
     {
         return $this->belongsTo('App\StudyPlan');
@@ -16,10 +21,5 @@ class StudyPlanSubject extends Model
     public function grade()
     {
         return $this->belongsTo('App\Grade');
-    }
-
-    public function subject()
-    {
-        return $this->belongsTo('App\Subject');
     }
 }

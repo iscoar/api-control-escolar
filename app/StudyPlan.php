@@ -13,9 +13,9 @@ class StudyPlan extends Model
         return $this->belongsTo('App\Career');
     }
 
-    public function study_plans_subjects()
+    public function study_plans_grades()
     {
-        return $this->hasMany('App\StudyPlanSubject');
+        return $this->hasMany('App\StudyPlanGrade');
     }
 
 }
