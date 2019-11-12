@@ -17,8 +17,8 @@ class CreateCareersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('level_id')->unsigned();
             $table->foreign('level_id')->references('id')->on('levels');
-            $table->string('name', 50)->nullable();
-            $table->enum('turn', ['Matutino', 'Vespertino', 'Despresurizado']);
+            $table->string('name', 100)->nullable();
+            $table->enum('turn', ['MATUTINO', 'VESPERTINO', 'DESPRESURIZADO']);
             $table->string('acronym', 6)->nullable();
             $table->timestamps();
         });
