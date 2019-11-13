@@ -20,6 +20,7 @@ class CreateFineDetailsTable extends Migration
             $table->double('amount',8,2);
             $table->smallInteger('days_to_apply');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

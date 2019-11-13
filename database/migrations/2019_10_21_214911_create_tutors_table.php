@@ -20,6 +20,7 @@ class CreateTutorsTable extends Migration
             $table->enum('relationship', ['Abuelo','Datos fiscales','Esposo','Hermano','Padre','Madre','Tío', 'Tutor académico']);
             $table->enum('type',['Principal','Alterno']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

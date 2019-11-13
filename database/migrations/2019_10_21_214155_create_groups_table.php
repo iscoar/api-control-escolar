@@ -23,6 +23,7 @@ class CreateGroupsTable extends Migration
             $table->foreign('grade_id')->references('id')->on('grades');
             $table->enum('status',['Activo', 'Inactivo']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

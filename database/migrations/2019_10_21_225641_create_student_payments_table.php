@@ -27,6 +27,7 @@ class CreateStudentPaymentsTable extends Migration
             $table->double('grant',8,2);
             $table->double('total',8,2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

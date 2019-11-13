@@ -23,6 +23,7 @@ class CreatePaymentConceptsTable extends Migration
             $table->enum('type',['Trámites', 'Colegiaturas', 'Inscripción', 'Multas']);
             $table->enum('status',['Activo', 'Inactivo']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

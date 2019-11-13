@@ -21,6 +21,7 @@ class CreateEvaluationCriteriaPercentagesTable extends Migration
             $table->foreign('evaluation_criteria_id')->references('id')->on('evaluation_criteria');
             $table->double('percentage', 3,2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

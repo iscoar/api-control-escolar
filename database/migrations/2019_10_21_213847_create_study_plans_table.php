@@ -19,6 +19,7 @@ class CreateStudyPlansTable extends Migration
             $table->foreign('career_id')->references('id')->on('careers');
             $table->string('name', 30)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

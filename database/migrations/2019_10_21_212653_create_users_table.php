@@ -43,6 +43,7 @@ class CreateUsersTable extends Migration
             $table->string('remember_token')->nullable();
             $table->timestamps();
             //$table->string('enrollment', 10)->unique();
+            $table->softDeletes();
         });
     }
 

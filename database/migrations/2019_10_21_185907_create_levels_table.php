@@ -21,6 +21,7 @@ class CreateLevelsTable extends Migration
             $table->double('minimum_score',4,2);
             $table->double('minimum_attendance',5,2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

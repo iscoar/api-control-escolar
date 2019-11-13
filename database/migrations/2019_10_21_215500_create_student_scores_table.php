@@ -22,6 +22,7 @@ class CreateStudentScoresTable extends Migration
             $table->double('score', 2,2);
             $table->integer('attendances');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

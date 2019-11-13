@@ -20,6 +20,7 @@ class CreateStudyPlanGradesTable extends Migration
             $table->BigInteger('grade_id')->unsigned();
             $table->foreign('grade_id')->references('id')->on('grades');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

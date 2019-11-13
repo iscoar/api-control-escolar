@@ -17,6 +17,7 @@ class CreateEvaluationCriteriaTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 50)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

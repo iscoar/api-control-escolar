@@ -21,6 +21,7 @@ class CreateGrantsTable extends Migration
             $table->double('amount',6,2);
             $table->enum('duration',['Level', 'Cycle']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

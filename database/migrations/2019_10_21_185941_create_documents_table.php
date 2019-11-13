@@ -18,6 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->string('name', 50)->nullable();
             $table->string('comments', 50)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

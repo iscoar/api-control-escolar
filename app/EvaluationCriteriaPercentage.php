@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvaluationCriteriaPercentage extends Model
 {
+  
     protected $guarded = [];  
 
     public function student_scores()

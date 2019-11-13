@@ -20,6 +20,7 @@ class CreateGroupEvaluationLevelsTable extends Migration
             $table->unsignedBigInteger('evaluation_level_id');
             $table->foreign('evaluation_level_id')->references('id')->on('evaluation_levels');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

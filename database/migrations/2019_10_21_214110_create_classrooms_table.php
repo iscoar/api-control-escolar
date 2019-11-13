@@ -19,6 +19,7 @@ class CreateClassroomsTable extends Migration
             $table->BigInteger('building_id')->unsigned();
             $table->foreign('building_id')->references('id')->on('buildings');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

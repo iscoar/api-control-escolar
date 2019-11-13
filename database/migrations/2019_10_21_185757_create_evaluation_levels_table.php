@@ -17,6 +17,7 @@ class CreateEvaluationLevelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 30)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

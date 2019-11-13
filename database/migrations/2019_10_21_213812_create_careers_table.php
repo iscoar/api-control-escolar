@@ -21,6 +21,7 @@ class CreateCareersTable extends Migration
             $table->enum('turn', ['MATUTINO', 'VESPERTINO', 'DESPRESURIZADO']);
             $table->string('acronym', 6)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

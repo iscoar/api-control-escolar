@@ -21,6 +21,7 @@ class CreateTeachersTable extends Migration
             $table->enum('scholarship',['LICENCIATURA', 'INGENIERÍA', 'MAESTRÍA', 'ESPECIALIDAD', 'DOCTORADO']);
             $table->string('career', 60);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
