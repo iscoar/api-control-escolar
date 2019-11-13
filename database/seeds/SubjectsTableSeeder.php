@@ -227,6 +227,7 @@ class SubjectsTableSeeder extends Seeder
             'name' => 'ESTADÍA',
             'created_at' => now()
         ]);
+        
         //INGENIERÍA
         //SEP-DIC18
         DB::table('subjects')->insert([

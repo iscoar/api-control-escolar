@@ -37,5 +37,20 @@ class EvaluationLevelsTableSeeder extends Seeder
             'name' => 'EXTRAORDINARIO 2',
             'created_at' => now()
         ]);
+        DB::table('evaluation_levels')->insert([
+            'id' => 6,
+            'name' => 'REMEDIAL 1',
+            'created_at' => now()
+        ]);
+        DB::table('evaluation_levels')->insert([
+            'id' => 7,
+            'name' => 'REMEDIAL 2',
+            'created_at' => now()
+        ]);
+        DB::table('evaluation_levels')->insert([
+            'id' => 8,
+            'name' => 'REMEDIAL 3',
+            'created_at' => now()
+        ]);
     }
 }
