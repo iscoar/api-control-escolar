@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class PaymentConcept extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];  
 
     public function cycle()
