@@ -37,6 +37,7 @@ class EvaluationCriteriaTableSeeder extends Seeder
             'name' => 'PRÁCTICAS DE LABORATORIO',
             'created_at' => now()
         ]);
+        //
         DB::table('evaluation_criteria')->insert([
             'id' => 6,
             'name' => 'EXPOSICIÓN EN EQUIPO',

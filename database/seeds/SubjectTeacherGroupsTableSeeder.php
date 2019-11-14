@@ -12,6 +12,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
     public function run()
     {
         //INGENIERÍA CUATRIMESTRE 1 (1-7) (43-49)
+        //ITI7B
         DB::table('subject_teacher_groups')->insert([
             'id' => 1,
             'group_id' => 1,
@@ -63,6 +64,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
         ]);
 
         //INGENIERÍA CUATRIMESTRE 2 (8-13) (50-55)
+        //ITI78
         DB::table('subject_teacher_groups')->insert([
             'id' => 8,
             'group_id' => 2,
@@ -107,6 +109,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
         ]);
 
         //INGENIERÍA CUATRIMESTRE 3 (14-19) (SUBJ 56-61)
+        //ITI9B
         DB::table('subject_teacher_groups')->insert([
             'id' => 14,
             'group_id' => 3,
@@ -151,6 +154,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
         ]);
 
         //INGENIERÍA CUATRIMESTRE 4 (20-25) (62-68)
+        //ITI10B
         DB::table('subject_teacher_groups')->insert([
             'id' => 20,
             'group_id' => 4,

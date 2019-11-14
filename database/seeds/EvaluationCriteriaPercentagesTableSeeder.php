@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\GroupEvaluationLevel;
 
 class EvaluationCriteriaPercentagesTableSeeder extends Seeder
 {
@@ -11,15 +12,27 @@ class EvaluationCriteriaPercentagesTableSeeder extends Seeder
      */
     public function run()
     {
-        //INGENIERÍA
-        //CUATRIMESTRE 1 
-        //LEVEL
-        DB::table('evaluation_criteria_percentages')->insert([
-            'id' => 1,
-            'gel_id' => 1,
-            'evaluation_criteria_id' => 1,
-            'percentage' => 1,
-            'created_at' => now()
-        ]);
+        $gel=GroupEvaluationLevel::all();
+        foreach($gel as $g)
+        {
+            DB::table('evaluation_criteria_percentages')->insert([
+                'gel_id' => $g->id,
+                'evaluation_criteria_id' => 2,
+                'percentage' => 50,
+                'created_at' => now()
+            ]); 
+            DB::table('evaluation_criteria_percentages')->insert([
+                'gel_id' => $g->id,
+                'evaluation_criteria_id' => 8,
+                'percentage' => 30,
+                'created_at' => now()
+            ]); 
+            DB::table('evaluation_criteria_percentages')->insert([
+                'gel_id' => $g->id,
+                'evaluation_criteria_id' => 4,
+                'percentage' => 20,
+                'created_at' => now()
+            ]); 
+        }
     }
 }

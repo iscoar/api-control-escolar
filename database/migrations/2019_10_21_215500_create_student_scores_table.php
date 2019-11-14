@@ -19,7 +19,7 @@ class CreateStudentScoresTable extends Migration
             $table->foreign('ecp_id')->references('id')->on('evaluation_criteria_percentages');
             $table->string('student_id', 10);
             $table->foreign('student_id')->references('id')->on('users');
-            $table->double('score', 2,2);
+            $table->double('score', 4,2);
             $table->integer('attendances');
             $table->timestamps();
             $table->softDeletes();

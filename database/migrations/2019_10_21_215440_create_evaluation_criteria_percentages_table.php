@@ -19,7 +19,7 @@ class CreateEvaluationCriteriaPercentagesTable extends Migration
             $table->foreign('gel_id')->references('id')->on('group_evaluation_levels');
             $table->unsignedBigInteger('evaluation_criteria_id');
             $table->foreign('evaluation_criteria_id')->references('id')->on('evaluation_criteria');
-            $table->double('percentage', 3,2);
+            $table->double('percentage', 5,2);
             $table->timestamps();
             $table->softDeletes();
         });
