@@ -24,6 +24,7 @@ class CreateStudentGrantsTable extends Migration
             $table->date('end_date');
             $table->enum('status',['Activo', 'Inactivo']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

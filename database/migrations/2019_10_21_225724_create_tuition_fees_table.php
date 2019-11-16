@@ -20,6 +20,7 @@ class CreateTuitionFeesTable extends Migration
             $table->enum('discount_type',['Porcentaje', 'Efectivo']);
             $table->double('amount',8,2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

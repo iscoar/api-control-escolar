@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('career_id');
             $table->foreign('career_id')->references('id')->on('careers');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

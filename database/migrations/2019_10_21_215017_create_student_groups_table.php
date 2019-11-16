@@ -20,6 +20,7 @@ class CreateStudentGroupsTable extends Migration
             $table->string('student_id', 10);
             $table->foreign('student_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class StudyPlan extends Model
 {
+    use SoftDeletes;
+    
     protected $guarded = [];  
     
     public function career()
@@ -13,9 +15,9 @@ class StudyPlan extends Model
         return $this->belongsTo('App\Career');
     }
 
-    public function study_plans_subjects()
+    public function study_plans_grades()
     {
-        return $this->hasMany('App\StudyPlanSubject');
+        return $this->hasMany('App\StudyPlanGrade');
     }
 
 }

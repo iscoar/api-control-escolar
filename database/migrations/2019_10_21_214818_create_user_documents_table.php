@@ -22,6 +22,7 @@ class CreateUserDocumentsTable extends Migration
             $table->datetime('date');
             $table->enum('status',['Entregado', 'Por entregar']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
