@@ -44,9 +44,25 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
-        //
+        $student = Student::where('user_id', $id)->firstOrFail();
+        if(is_object($student)){
+            $student['user'] = $student->user;
+            $data = array(
+                'code'      => 200,
+                'status'    => 'success',
+                'student'   => $student
+            );
+        } else {
+            $data = array(
+                'code'      => 404,
+                'status'    => 'error',
+                'message'   => 'Estudiante no existe' 
+            );
+        }
+
+        return response()->json($data, $data['code']);
     }
 
     /**

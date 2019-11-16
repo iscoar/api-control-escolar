@@ -19,11 +19,11 @@ class UserController extends Controller
     
             // Validar datos
             $validate = \Validator::make($params, [
+                'id'                => 'required|alpha_num',
                 'name'              => 'required|alpha',
                 'last_name'         => 'required|alpha',
                 'second_last_name'  => 'required|alpha',
                 'gender'            => 'required|alpha',
-                'enrollment'        => 'required|alpha_num|unique:users',
                 'password'          => 'required'
             ]);
     
@@ -41,12 +41,12 @@ class UserController extends Controller
 
                 // Crear el usuario
                 $user = new User();
+                $user->id               = $params['id'];
                 $user->name             = $params['name'];
                 $user->last_name        = $params['last_name'];
                 $user->second_last_name = $params['second_last_name'];
                 $user->gender           = $params['gender'];
                 $user->role             = "ROLE_STUDENT";
-                $user->enrollment       = $params['enrollment'];
                 $user->password         = $pwd;
 
                 // Guardar usuario
@@ -76,7 +76,7 @@ class UserController extends Controller
         $params = json_decode($json, true);
 
         $validate = \Validator::make($params, [
-            'enrollment'    => 'required|alpha_num',
+            'id'            => 'required|alpha_num',
             'password'      => 'required'
         ]);
 
@@ -90,9 +90,9 @@ class UserController extends Controller
 
         } else {
             $pwd = \hash('sha256', $params['password']);
-            $signup = $jwtAuth->signup($params['enrollment'], $pwd);
+            $signup = $jwtAuth->signup($params['id'], $pwd);
             if (!empty($params['gettoken'])) {
-                $signup = $jwtAuth->signup($params['enrollment'], $pwd, true);
+                $signup = $jwtAuth->signup($params['id'], $pwd, true);
             }
 
         }

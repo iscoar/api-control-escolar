@@ -13,9 +13,9 @@ class JwtAuth {
         $this->key = 'clave_super_segur_secreta_ninja-1512';
     }
 
-    public function signup($enrollment, $password, $getToken = null) {
+    public function signup($id, $password, $getToken = null) {
         $user = User::where([
-            'enrollment'     => $enrollment,
+            'id'            => $id,
             'password'      => $password
         ])->first();
 
@@ -27,7 +27,6 @@ class JwtAuth {
         if ($signup) {
             $token = array(
                 'sub'           => $user->id,
-                'enrollment'    => $user->enrollment,
                 'name'          => $user->name,
                 'role'          => $user->role,
                 'surname'       => $user->last_name.' '.$user->second_last_name,
