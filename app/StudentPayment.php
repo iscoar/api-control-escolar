@@ -12,7 +12,7 @@ class StudentPayment extends Model
 
     public function payment_concept()
     {
-        return $this->belongsTo('App\PaymentConcept');
+        return $this->belongsTo('App\PaymentConcept', 'payment_concept_id');
     }
     public function student()
     {

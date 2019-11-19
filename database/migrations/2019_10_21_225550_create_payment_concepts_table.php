@@ -20,7 +20,7 @@ class CreatePaymentConceptsTable extends Migration
             $table->unsignedBigInteger('cycle_id');
             $table->foreign('cycle_id')->references('id')->on('cycles');
             $table->double('amount',8,2);
-            $table->enum('type',['Trámites', 'Colegiaturas', 'Inscripción', 'Multas']);
+            $table->enum('type',['Trámite', 'Colegiatura', 'Inscripción', 'Multa']);
             $table->enum('status',['Activo', 'Inactivo']);
             $table->timestamps();
             $table->softDeletes();
