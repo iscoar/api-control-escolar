@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use Firebase\JWT\JWT;
 use Iluminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class JwtAuth {
@@ -14,42 +15,43 @@ class JwtAuth {
     }
 
     public function signup($id, $password, $getToken = null) {
-        $user = User::where([
-            'id'            => $id,
-            'password'      => $password
-        ])->first();
-
-        $signup = false;
-        if (is_object($user)) {
-            $signup = true;
-        }
-
-        if ($signup) {
-            $token = array(
-                'sub'           => $user->id,
-                'name'          => $user->name,
-                'role'          => $user->role,
-                'surname'       => $user->last_name.' '.$user->second_last_name,
-                'lat'           => time(),
-                'exp'           => time() + (7 * 24 * 60 * 60)
-            );
-
-            $jwt = JWT::encode($token, $this->key, 'HS256');
-            $decoded = JWT::decode($jwt, $this->key, ['HS256']);
-
-            if(is_null($getToken)) {
-                $data = $jwt;
-            } else {
-                $data = $decoded;
-            }
-        } else {
+        $user = User::where('id', $id)->first();
+        if (!$user) {
             $data = array(
                 'status'    => 'error',
                 'code'      => 404,
-                'message'   => 'Login incorrecto',
+                'message'   => 'Matricula no existe',
             );
+            return response()->json($data);
+        } else {
+            if (!Hash::check($password, $user->password)) {
+                $data = array(
+                    'status'    => 'error',
+                    'code'      => 404,
+                    'message'   => 'Contrasena incorrecta',
+                );
+                return response()->json($data);
+            } else {
+                $token = array(
+                    'sub'           => $user->id,
+                    'name'          => $user->name,
+                    'role'          => $user->role,
+                    'surname'       => $user->last_name.' '.$user->second_last_name,
+                    'lat'           => time(),
+                    'exp'           => time() + (7 * 24 * 60 * 60)
+                );
+    
+                $jwt = JWT::encode($token, $this->key, 'HS256');
+                $decoded = JWT::decode($jwt, $this->key, ['HS256']);
+    
+                if(is_null($getToken)) {
+                    $data = $jwt;
+                } else {
+                    $data = $decoded;
+                }
+            }
+            return $data;
         }
-        return $data;
     }
 
     public function checkToken($jwt, $getIdentity = false) {

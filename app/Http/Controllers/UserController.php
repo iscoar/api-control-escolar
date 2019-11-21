@@ -36,8 +36,6 @@ class UserController extends Controller
                 );
     
             } else {
-                // Cifrar contrasena
-                $pwd = \hash('sha256', $params['password']);
 
                 // Crear el usuario
                 $user = new User();
@@ -47,7 +45,7 @@ class UserController extends Controller
                 $user->second_last_name = $params['second_last_name'];
                 $user->gender           = $params['gender'];
                 $user->role             = "ROLE_STUDENT";
-                $user->password         = $pwd;
+                $user->password         = \bcrypt($params['password']);
 
                 // Guardar usuario
                 $user->save();
@@ -89,10 +87,9 @@ class UserController extends Controller
             );
 
         } else {
-            $pwd = \hash('sha256', $params['password']);
-            $signup = $jwtAuth->signup($params['id'], $pwd);
+            $signup = $jwtAuth->signup($params['id'], $params['password']);
             if (!empty($params['gettoken'])) {
-                $signup = $jwtAuth->signup($params['id'], $pwd, true);
+                $signup = $jwtAuth->signup($params['id'], $params['password'], true);
             }
 
         }
