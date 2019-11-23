@@ -10,10 +10,6 @@ class Student extends Model
     
     protected $guarded = [];  
 
-    public function career()
-    {
-        return $this->belongsTo('App\Career');
-    }
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -21,6 +17,10 @@ class Student extends Model
     public function tutors()
     {
         return $this->hasMany('App\Tutor');
+    }
+    public function student_careers()
+    {
+        return $this->hasMany('App\StudentCareer');
     }
 
 }

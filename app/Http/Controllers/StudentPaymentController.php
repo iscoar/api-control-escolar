@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\StudentPayment;
+use App\Student;
+use App\StudentCareer;
+use App\User;
+use App\PaymentConcept;
+use App\Cycle;
+use App\Level;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StudentPaymentController extends Controller
@@ -12,9 +20,25 @@ class StudentPaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index($id)
+    { 
+        $student = Student::where('user_id', $id)->firstOrFail();
+        $careers = DB::table('student_careers')
+            ->join('careers', 'careers.id', '=', 'student_careers.career_id')
+            ->join('levels', 'levels.id', '=', 'careers.level_id')
+            ->select('student_careers.*', 'careers.name as career_name', 'levels.id as level_id','levels.name as level_name')
+            ->where('student_id', $student->id)
+            ->orderByDesc('start_date')
+            ->get()
+            ->groupBy('level_id')
+            ->transform(function($level){
+                return $level->keyBy('career_id');
+            });
+
+            dump($careers);
+            $last = $careers->first()->first();
+            //$payments = ;
+            dd($last);
     }
 
     /**
@@ -44,9 +68,11 @@ class StudentPaymentController extends Controller
      * @param  \App\StudentPayment  $studentPayment
      * @return \Illuminate\Http\Response
      */
-    public function show(StudentPayment $studentPayment)
+    public function show($id)
     {
-        //
+        $user->User::with('student')->findOrFail($id);
+        
+
     }
 
     /**

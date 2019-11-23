@@ -21,8 +21,8 @@ class Career extends Model
         return $this->hasMany('App\StudyPlan');
     }
 
-    public function students()
+    public function student_careers()
     {
-        return $this->hasMany('App\Student');
+        return $this->hasMany('App\StudentCareer');
     }
 }

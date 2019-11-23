@@ -23,3 +23,5 @@ Route::post('/login', 'UserController@login');
 Route::middleware(['api.auth'])->group(function () {
     Route::get('/student/{id}', 'StudentController@show');
 });
+
+Route::get('/student/{id}/payments', 'StudentPaymentController@index');

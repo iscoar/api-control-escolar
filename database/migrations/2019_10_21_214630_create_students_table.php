@@ -18,9 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('user_id',10)->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->smallInteger('egetsu_rating')->nullable();
-            $table->enum('status',['Activo','Baja temporal','Baja definitiva', 'Egresado', 'Reingreso', 'Bloqueado']);
-            $table->unsignedBigInteger('career_id');
-            $table->foreign('career_id')->references('id')->on('careers');
+            $table->enum('status',['ACTIVO','BAJA TEMPORAL','BAJA DEFINITIVA', 'EGRESADO', 'REINGRESO', 'BLOQUEADO']);
             $table->timestamps();
             $table->softDeletes();
         });
