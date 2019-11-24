@@ -24,4 +24,9 @@ class Cycle extends Model
     {
         return $this->hasMany('App\PaymentConcept');
     }
+
+    public function student_career()
+    {
+        return $this->hasMany('App\Cycle', 'start_cycle_id');
+    }
 }

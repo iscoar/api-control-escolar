@@ -19,7 +19,8 @@ class CreateStudentCareersTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
             $table->unsignedBigInteger('career_id');
             $table->foreign('career_id')->references('id')->on('careers');
-            $table->date('start_date');
+            $table->unsignedBigInteger('start_cycle_id');
+            $table->foreign('start_cycle_id')->references('id')->on('cycles');
             $table->date('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -19,4 +19,9 @@ class StudentCareer extends Model
     {
         return $this->belongsTo('App\Career');
     }
+
+    public function cycle()
+    {
+        return $this->belongsTo('App\Cycle', 'start_cycle_id');
+    }
 }
