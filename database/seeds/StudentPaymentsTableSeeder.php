@@ -11,7 +11,7 @@ class StudentPaymentsTableSeeder extends Seeder
      */
     public function run()
     {
-        $pc=PaymentConcept::all();
+        $pc=PaymentConcept::with('cycle')->get();
         foreach($pc as $pid)
         {
             DB::table('student_payments')->insert([
@@ -23,8 +23,9 @@ class StudentPaymentsTableSeeder extends Seeder
                 'discount'=> 0,
                 'grant'=> 0,
                 'total'=> $pid->amount,
+                'payment_date'=> now(),
                 'status' => 'PAGADO',
-                'created_at'=> now()
+                'created_at'=> $pid->cycle->start_date
             ]);
             DB::table('student_payments')->insert([
                 'cashier_id' => 'R100000000',
@@ -35,8 +36,9 @@ class StudentPaymentsTableSeeder extends Seeder
                 'discount'=> 0,
                 'grant'=> 0,
                 'total'=> $pid->amount,
+                'payment_date'=> now(),
                 'status' => 'PAGADO',
-                'created_at'=> now()
+                'created_at'=> $pid->cycle->start_date
             ]);
             DB::table('student_payments')->insert([
                 'cashier_id' => 'R100000000',
@@ -47,8 +49,9 @@ class StudentPaymentsTableSeeder extends Seeder
                 'discount'=> 0,
                 'grant'=> 0,
                 'total'=> $pid->amount,
+                'payment_date'=> now(),
                 'status' => 'PAGADO',
-                'created_at'=> now()
+                'created_at'=> $pid->cycle->start_date
             ]);
             DB::table('student_payments')->insert([
                 'cashier_id' => 'R100000000',
@@ -59,8 +62,9 @@ class StudentPaymentsTableSeeder extends Seeder
                 'discount'=> 0,
                 'grant'=> 0,
                 'total'=> $pid->amount,
+                'payment_date'=> now(),
                 'status' => 'PAGADO',
-                'created_at'=> now()
+                'created_at'=> $pid->cycle->start_date
             ]);
             DB::table('student_payments')->insert([
                 'cashier_id' => 'R100000000',
@@ -71,8 +75,9 @@ class StudentPaymentsTableSeeder extends Seeder
                 'discount'=> 0,
                 'grant'=> 0,
                 'total'=> $pid->amount,
+                'payment_date'=> now(),
                 'status' => 'PAGADO',
-                'created_at'=> now()
+                'created_at'=> $pid->cycle->start_date
             ]);
         }
         

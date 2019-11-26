@@ -231,6 +231,16 @@ class PaymentConceptsTableSeeder extends Seeder
             'created_at'=> now()
         //
         ]);
+
+      /*  DB::table('payment_concepts')->insert([
+            'id' => 21,
+            'name' => 'CONSTANCIA DE ESTUDIOS',
+            'amount'=> 36,
+            'type'=> 'TRAMITE',
+            'status'=> 'ACTIVO',
+            'created_at'=> now()
+        ]);
+        */
     }
  }
 

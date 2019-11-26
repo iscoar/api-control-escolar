@@ -20,7 +20,7 @@ class StudentCareersSeeder extends Seeder
         DB::table('student_careers')->insert([
             'student_id' => 1,
             'career_id' => 2,
-            'start_cycle_id' => 1,
+            'start_cycle_id' => 5,
             'created_at' => now()
         ]);
         DB::table('student_careers')->insert([

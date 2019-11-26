@@ -25,3 +25,4 @@ Route::middleware(['api.auth'])->group(function () {
 });
 
 Route::get('/student/{id}/payments', 'StudentPaymentController@index');
+Route::get('/student/{student_id}/payments/{level_id}/{career_id}/{cycle_id}', 'StudentPaymentController@show');

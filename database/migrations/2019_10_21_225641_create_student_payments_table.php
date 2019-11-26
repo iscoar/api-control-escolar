@@ -26,6 +26,7 @@ class CreateStudentPaymentsTable extends Migration
             $table->double('discount',8,2)->nullable();
             $table->double('grant',8,2)->nullable();
             $table->double('total',8,2)->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->enum('status',['PENDIENTE', 'PAGADO', 'CONVENIO'])->nullable();
             $table->timestamps();
             $table->softDeletes();
