@@ -15,10 +15,11 @@ class CreateCyclesTable extends Migration
     {
         Schema::create('cycles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name',11);
             $table->unsignedBigInteger('level_id');
             $table->foreign('level_id')->references('id')->on('levels');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
             $table->softDeletes();
         });
