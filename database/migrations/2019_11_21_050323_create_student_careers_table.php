@@ -22,6 +22,7 @@ class CreateStudentCareersTable extends Migration
             $table->unsignedBigInteger('start_cycle_id');
             $table->foreign('start_cycle_id')->references('id')->on('cycles');
             $table->date('end_date')->nullable();
+            $table->enum('status',['ACTIVO', 'INACTIVO']);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -101,4 +101,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\StudentGrant', 'student_id');
     }
+    public function student_absences()
+    {
+        return $this->hasMany('App\StudentAbsence', 'student_id');
+    }
 }
