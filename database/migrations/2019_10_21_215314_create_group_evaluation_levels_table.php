@@ -19,6 +19,7 @@ class CreateGroupEvaluationLevelsTable extends Migration
             $table->foreign('stg_id')->references('id')->on('subject_teacher_groups');
             $table->unsignedBigInteger('evaluation_level_id');
             $table->foreign('evaluation_level_id')->references('id')->on('evaluation_levels');
+            $table->integer('sessions')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

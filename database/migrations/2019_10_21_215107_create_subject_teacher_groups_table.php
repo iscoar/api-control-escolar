@@ -21,6 +21,7 @@ class CreateSubjectTeacherGroupsTable extends Migration
             $table->foreign('teacher_id')->references('id')->on('users');
             $table->BigInteger('group_id')->unsigned();
             $table->foreign('group_id')->references('id')->on('groups');
+            $table->integer('total_sessions')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

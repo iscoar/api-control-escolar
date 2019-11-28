@@ -22,5 +22,8 @@ class GroupEvaluationLevel extends Model
     {
         return $this->belongsTo('App\EvaluationLevel');
     }
-
+    public function student_absences()
+    {
+        return $this->hasMany('App\StudentAbsence', 'gel_id');
+    }
 }
