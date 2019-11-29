@@ -29,33 +29,32 @@ class StudentPaymentController extends Controller
             ->join('cycles', 'cycles.id', '=', 'student_careers.start_cycle_id')
             ->select('student_careers.*', 'careers.name as career_name', 'levels.id as level_id','levels.name as level_name', 'cycles.start_date as start_date')
             ->where('student_id', $student->id)
-            ->orderByDesc('cycles.start_date')
-            ->get()
-            ->groupBy('level_id');
+            ->orderBy('cycles.start_date')
+            ->get();
 
         $final_data = collect();
         $payments = collect();
+        dump($careers_by_level);
 
         if($careers_by_level->isNotEmpty()){
-            //Crear colección de ciclos->carreras->ciclos 
-            //Ciclar niveles
-            $final_data = $careers_by_level->map(function($level){
-                //Se guardan los datos del nivel en una colección
+
+            $last_id = $careers_by_level->last()->career_id;
+            $final_data = collect();
+            $levels = collect();
+
+            foreach($careers_by_level as $career){
                 $data_level = collect([
-                    'id' => $level->first()->level_id, 
-                    'name' => $level->first()->level_name
+                    'id' => $career->level_id, 
+                    'name' => $career->level_name
                 ]);
-                $careers = collect();
-                //Ciclar las carreras y guardarlas en colección
-                $careers = $level->mapWithKeys(function($career) {
-                    //extrare id y nombre de la carrera y guardarlo en una colección
+                if($career->career_id == $last_id){
+                    dump($career->career_id);
                     $data_career = collect([
                         'id' => $career->id, 
                         'name' => $career->career_name
-                        ]);
-                    //Si en students_career no hay fecha de fin, se obtiene la actual
+                    ]);
+
                     $end_date = ($career->end_date != null) ? $career->end_date : now()->format('Y-m-d');
-                    //Se obtienen ciclos de carrera actual
                     $cycles = DB::table('cycles')
                         ->where([
                             ['start_date','>=',$career->start_date],
@@ -63,30 +62,26 @@ class StudentPaymentController extends Controller
                             ['level_id', $career->level_id]
                         ])
                         ->select('id', 'name')
+                        ->orderBy('start_date')
                         ->get()
                         ->keyBy('id');
-                    //Retornar datos de la carrera y sus ciclos
-                    return [
-                        $data_career['id'] => [
-                            'data' =>$data_career,
-                            'cycles'=> $cycles
-                        ]
-                    ];
-                });
-                //Retornar datos del nivel y las carreras
-                return [
-                    'data' => $data_level,
-                    'careers' => $careers
-                ];           
-            });
+
+                    $final_data->put('careers', $data_career);
+                    $final_data->put('cycles', $cycles);
+                }
+                $levels->put($career->id,$data_level);
+            }
+            $final_data->put('levels', $levels);   
+            
             //PAGOS
-            $last_career = $careers_by_level->first()->first();
+            $last_cycle = $cycles->last()->id;
+
             $payments = DB::table('student_payments')
                 ->join('payment_concepts', 'payment_concepts.id', 'student_payments.payment_concept_id')
                 ->leftJoin('fine_details', 'fine_details.payment_concept_id', 'payment_concepts.id')
                 ->where([
                     ['student_id', $id],
-                    ['cycle_id', $last_career->id],
+                    ['cycle_id', $last_cycle],
                 ])
                 ->select(
                     'payment_concepts.name',
@@ -98,12 +93,14 @@ class StudentPaymentController extends Controller
                     'student_payments.grant',
                     'student_payments.total'
                     )
+                ->orderBy('student_payments.created_at')
                 ->get();
+
             if($payments->isNotEmpty()){
                 $data = array(
                     'code'      => 200,
                     'status'    => 'success',
-                    'final_data'   => $final_data,
+                    'final_data'   => $final_data->toArray(),
                     'payments' => $payments
                 );
             }
@@ -116,7 +113,6 @@ class StudentPaymentController extends Controller
             );
         }
         return response()->json($data, $data['code']);
-
     }
 
     /**
@@ -146,20 +142,101 @@ class StudentPaymentController extends Controller
      * @param  \App\StudentPayment  $studentPayment
      * @return \Illuminate\Http\Response
      */
-    public function show($student_id, $level_id, $career_id, $cycle_id)
+    public function payments_by_level($student_id, $level_id)
     {
         $student = Student::where('user_id', $student_id)->firstOrFail();
-        $career = StudentCareer::where('career_id', $career_id)->firstOrFail();
+        
+        $career = DB::table('student_careers')
+            ->join('careers', 'careers.id', '=', 'student_careers.career_id')
+            ->join('levels', 'levels.id', '=', 'careers.level_id')
+            ->join('cycles', 'cycles.id', '=', 'student_careers.start_cycle_id')
+            ->select('student_careers.*', 'careers.name as career_name', 'levels.id as level_id','levels.name as level_name', 'cycles.start_date as start_date')
+            ->where([
+                ['student_id', $student->id],
+                ['careers.level_id', $level_id]
+            ])
+            ->orderBy('cycles.start_date')
+            ->get()->last();
+        
+        if($career->isNtotEmpty())
+        {
+            $end_date = ($career->end_date != null) ? $career->end_date : now()->format('Y-m-d');
+
+            $cycles = DB::table('cycles')
+                ->where([
+                    ['start_date','>=',$career->start_date],
+                    ['start_date','<=',$end_date],
+                    ['level_id', $career->level_id]
+                ])
+                ->select('id', 'name')
+                ->orderBy('start_date')
+                ->get()
+                ->keyBy('id');
+            $last_cycle = $cycles->last()->id;
+
+            $payments = DB::table('student_payments')
+                ->join('payment_concepts', 'payment_concepts.id', 'student_payments.payment_concept_id')
+                ->leftJoin('fine_details', 'fine_details.payment_concept_id', 'payment_concepts.id')
+                ->where([
+                    ['student_id', $student_id],
+                    ['cycle_id', $last_cycle],
+                ])
+                ->select(
+                    'payment_concepts.name',
+                    'payment_concepts.expires_date',
+                    'student_payments.payment_date',
+                    'fine_details.amount',                            
+                    'student_payments.surcharge',
+                    'student_payments.discount',
+                    'student_payments.grant',
+                    'student_payments.total'
+                    )
+                ->orderBy('student_payments.created_at')
+                ->get();
+            $final_data = collect();
+            $final_data->put('career', $career->career_name);
+            $final_data->put('cycles', $cycles);
+            $final_data->put('payments', $payments);
+            if($payments->isNotEmpty())
+            {
+                $data = array(
+                    'code'      => 200,
+                    'status'    => 'success',
+                    'data'   => $final_data->toArray(),
+                    'payments' => $payments
+                );
+            }
+        }
+        else {
+            $data = array(
+                'code'      => 404,
+                'status'    => 'error',
+                'message'   => 'Datos inexistentes' 
+            );
+        }
+        return response()->json($data, $data['code']);
+
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\StudentPayment  $studentPayment
+     * @return \Illuminate\Http\Response
+     */
+    public function payments_by_cycle($student_id, $level_id, $cycle_id)
+    {
+        $student = Student::where('user_id', $student_id)->firstOrFail();
+        $level = Level::findOrFail($level_id);
         $cycle = Cycle::findOrFail($cycle_id);
 
         $payments = DB::table('student_payments')
             ->join('payment_concepts', 'payment_concepts.id', 'student_payments.payment_concept_id')
+            ->join('cycles', 'cycles.id', 'payment_concepts.cycle_id')
             ->leftJoin('fine_details', 'fine_details.payment_concept_id', 'payment_concepts.id')
             ->where([
                 ['student_id', $student_id],
                 ['cycle_id', $cycle_id],
-                ['student_payments.created_at','>=', $cycle->start_date],
-                ['student_payments.created_at','<=', $cycle->end_date]
+                ['cycles.level_id', $level_id],
             ])
             ->select(
                 'payment_concepts.name',
@@ -171,23 +248,24 @@ class StudentPaymentController extends Controller
                 'student_payments.grant',
                 'student_payments.total'
                 )
-            ->get()
-            ->sortByDesc('student_payments.created_at');
-        if($payments->isNotEmpty()){
+            ->orderBy('student_payments.created_at')
+            ->get();
+
+        if($payments->isNotEmpty())
+        {
             $data = array(
                 'code'      => 200,
                 'status'    => 'success',
                 'payments' => $payments
             );
         }
-        else{
+        else {
             $data = array(
                 'code'      => 404,
                 'status'    => 'error',
                 'message'   => 'Datos inexistentes' 
             );
         }
-
         return response()->json($data, $data['code']);
     }
 
