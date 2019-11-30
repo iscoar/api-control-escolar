@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\GroupEvaluationLevel;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GroupEvaluationLevelController extends Controller
@@ -12,9 +14,36 @@ class GroupEvaluationLevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($teacher_id,$group_id)
     {
-        //
+        $groupScores = DB::table('group_evaluation_levels')
+            ->join('subject_teacher_groups', 'subject_teacher_groups.id', '=', 'group_evaluation_levels.stg_id')
+            ->join('groups', 'groups.id', '=', 'subject_teacher_groups.group_id')
+            ->join('evaluation_criteria_percentages', 'evaluation_criteria_percentages.gel_id', '=', 'group_evaluation_levels.id')
+            ->join('student_scores', 'student_scores.ecp_id', '=', 'evaluation_criteria_percentages.id')
+            ->join('users', 'users.id', '=', 'student_scores.student_id')
+            ->join('evaluation_criteria', 'evaluation_criteria.id', '=', 'evaluation_criteria_percentages.evaluation_criteria_id')
+            ->select('student_scores.score as student_score', 
+            'groups.description as group', 
+            'group_evaluation_levels.evaluation_level_id as level', 
+            'evaluation_criteria.name as criteria',
+            'users.id',
+            'users.name',
+            'users.last_name',
+            'users.second_last_name')
+            ->where([
+                ['subject_teacher_groups.group_id', $group_id],
+                ['subject_teacher_groups.teacher_id', $teacher_id],
+                ['group_evaluation_levels.status', 'ACTIVO']
+            ])
+            ->get()
+            ->groupBy('id')
+            ->sortBy('last_name');
+            dd($groupScores);
+
+            $data = $groupScores->map(function($student){
+
+            });
     }
 
     /**
