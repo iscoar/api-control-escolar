@@ -18,16 +18,19 @@ class GroupEvaluationLevelsTableSeeder extends Seeder
             DB::table('group_evaluation_levels')->insert([
                 'stg_id' => $s->id,
                 'evaluation_level_id' => 1,
+                'sessions' => 15,
                 'created_at' => now()
             ]);
             DB::table('group_evaluation_levels')->insert([
                 'stg_id' => $s->id,
                 'evaluation_level_id' => 2,
+                'sessions' => 15,
                 'created_at' => now()
             ]);
             DB::table('group_evaluation_levels')->insert([
                 'stg_id' => $s->id,
                 'evaluation_level_id' => 3,
+                'sessions' => 15,
                 'created_at' => now()
             ]);
         } 

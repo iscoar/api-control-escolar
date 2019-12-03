@@ -18,6 +18,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 43,
             'teacher_id' => '11111',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -25,6 +26,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 44,
             'teacher_id' => '11112',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -32,6 +34,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 45,
             'teacher_id' => '11113',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -39,6 +42,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 46,
             'teacher_id' => '11114',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -46,6 +50,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 47,
             'teacher_id' => '11115',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -53,6 +58,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 48,
             'teacher_id' => '11116',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -60,6 +66,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 1,
             'subject_id' => 49,
             'teacher_id' => '11117',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
 
@@ -70,6 +77,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 50,
             'teacher_id' => '11111',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -77,6 +85,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 51,
             'teacher_id' => '11112',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -84,6 +93,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 52,
             'teacher_id' => '11113',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -91,6 +101,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 53,
             'teacher_id' => '11114',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -98,6 +109,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 54,
             'teacher_id' => '11115',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -105,6 +117,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 2,
             'subject_id' => 55,
             'teacher_id' => '11116',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
 
@@ -115,6 +128,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 56,
             'teacher_id' => '11111',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -122,6 +136,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 57,
             'teacher_id' => '11112',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -129,6 +144,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 58,
             'teacher_id' => '11113',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -136,6 +152,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 59,
             'teacher_id' => '11114',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -143,6 +160,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 60,
             'teacher_id' => '11115',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -150,6 +168,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 3,
             'subject_id' => 61,
             'teacher_id' => '11116',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
 
@@ -160,6 +179,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 62,
             'teacher_id' => '11111',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -167,6 +187,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 63,
             'teacher_id' => '11112',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -174,6 +195,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 64,
             'teacher_id' => '11113',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -181,6 +203,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 65,
             'teacher_id' => '11114',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -188,6 +211,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 66,
             'teacher_id' => '11115',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -195,6 +219,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 67,
             'teacher_id' => '11116',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
         DB::table('subject_teacher_groups')->insert([
@@ -202,6 +227,7 @@ class SubjectTeacherGroupsTableSeeder extends Seeder
             'group_id' => 4,
             'subject_id' => 68,
             'teacher_id' => '11117',
+            'total_sessions' => 45,
             'created_at' => now()
         ]);
     }

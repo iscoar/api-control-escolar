@@ -34,7 +34,6 @@ class StudentPaymentController extends Controller
 
         $final_data = collect();
         $payments = collect();
-        dump($careers_by_level);
 
         if($careers_by_level->isNotEmpty()){
 
@@ -48,7 +47,6 @@ class StudentPaymentController extends Controller
                     'name' => $career->level_name
                 ]);
                 if($career->career_id == $last_id){
-                    dump($career->career_id);
                     $data_career = collect([
                         'id' => $career->id, 
                         'name' => $career->career_name
@@ -100,7 +98,7 @@ class StudentPaymentController extends Controller
                 $data = array(
                     'code'      => 200,
                     'status'    => 'success',
-                    'final_data'   => $final_data->toArray(),
+                    'data'   => $final_data->toArray(),
                     'payments' => $payments
                 );
             }
