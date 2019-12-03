@@ -22,7 +22,7 @@ class JwtAuth {
                 'code'      => 404,
                 'message'   => 'Matricula no existe',
             );
-            return response()->json($data);
+            return response()->json($data, $data['code']);
         } else {
             if (!Hash::check($password, $user->password)) {
                 $data = array(
@@ -30,7 +30,7 @@ class JwtAuth {
                     'code'      => 404,
                     'message'   => 'Contrasena incorrecta',
                 );
-                return response()->json($data);
+                return response()->json($data, $data['code']);
             } else {
                 $token = array(
                     'sub'           => $user->id,

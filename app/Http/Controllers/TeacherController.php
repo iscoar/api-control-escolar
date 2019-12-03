@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -81,5 +82,53 @@ class TeacherController extends Controller
     public function destroy(Teacher $teacher)
     {
         //
+    }
+
+    public function groups($id) {
+        $groups = DB::table('groups')
+                    ->join('subject_teacher_groups', 'subject_teacher_groups.group_id', '=', 'groups.id')
+                    ->select('groups.id', 'groups.description')
+                    ->where('subject_teacher_groups.teacher_id', $id)
+                    ->where('groups.status', 'Activo')
+                    ->get();
+        if ($groups) {
+            $data = array(
+                'status' => 'success',
+                'code' => 200,
+                'groups' => $groups
+            );
+        } else {
+            $data = array(
+                'status' => 'error',
+                'code' => 404,
+                'message' => 'Profesor sin grupos, Profesor Feliz'
+            );
+        }
+
+        return response()->json($data, $data['code']);
+    }
+
+    public function groupSubjects($id, $group_id) {
+        $subjects = DB::table('subjects')
+                    ->join('subject_teacher_groups', 'subject_teacher_groups.subject_id', '=', 'subjects.id')
+                    ->select('subjects.id', 'subjects.name')
+                    ->where('subject_teacher_groups.teacher_id', $id)
+                    ->where('subject_teacher_groups.group_id', $group_id)
+                    ->get();
+        if ($subjects) {
+            $data = array(
+                'status' => 'success',
+                'code' => 200,
+                'subjects' => $subjects
+            );
+        } else {
+            $data = array(
+                'status' => 'error',
+                'code' => 404,
+                'message' => 'Profesor sin materias, Profesor Feliz'
+            );
+        }
+
+        return response()->json($data, $data['code']);
     }
 }
