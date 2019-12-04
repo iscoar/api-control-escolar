@@ -30,4 +30,9 @@ class SubjectTeacherGroup extends Model
     {
         return $this->hasMany('App\GroupEvaluationLevel', 'stg_id');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule', 'stg_id');
+    }
 }
