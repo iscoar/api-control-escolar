@@ -37,3 +37,6 @@ Route::get('/teacher/{id}/group/{group_id}/subjects', 'TeacherController@groupSu
 Route::get('/teacher/{id}/schedule', 'ScheduleController@teacher_schedule');
 Route::get('/student/{id}/schedule', 'ScheduleController@student_schedule');
 
+Route::get('/student/{id}/absences', 'AbsencesController@show');
+Route::get('/teacher/{id}/{group_id}/students/absences', 'AbsencesController@index');
+
