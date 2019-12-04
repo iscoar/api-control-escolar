@@ -25,11 +25,15 @@ Route::middleware(['api.auth'])->group(function () {
 });
 
 Route::get('/student/{id}/payments', 'StudentPaymentController@index');
-Route::get('/student/{student_id}/payments/{level_id}/{career_id}/{cycle_id}', 'StudentPaymentController@show');
-Route::get('/teacher/{teacher_id}/group/{group_id}', 'GroupEvaluationLevelController@index');
 Route::get('/student/{id}/{level_id}/payments', 'StudentPaymentController@payments_by_level');
 Route::get('/student/{student_id}/{level_id}/{cycle_id}/payments', 'StudentPaymentController@payments_by_cycle');
 
+
+Route::get('/teacher/{teacher_id}/group/{group_id}', 'GroupEvaluationLevelController@index');
+
 Route::get('/teacher/{id}/groups', 'TeacherController@groups');
 Route::get('/teacher/{id}/group/{group_id}/subjects', 'TeacherController@groupSubjects');
+
+Route::get('/teacher/{id}/schedule', 'ScheduleController@teacher_schedule');
+Route::get('/student/{id}/schedule', 'ScheduleController@student_schedule');
 
