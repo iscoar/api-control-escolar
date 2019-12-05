@@ -155,8 +155,8 @@ class StudentPaymentController extends Controller
             ])
             ->orderBy('cycles.start_date')
             ->get()->last();
-        
-        if($career->isNtotEmpty())
+
+        if($career != null)
         {
             $end_date = ($career->end_date != null) ? $career->end_date : now()->format('Y-m-d');
 
