@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
             TuitionFeesTableSeeder::class,
             FineDetailsTableSeeder::class,
             StudentAbsencesTableSeeder::class,
+            DaysTableSeeder::class,
             SessionsTableSeeder::class,
             SchedulesTableSeeder::class
             ]);

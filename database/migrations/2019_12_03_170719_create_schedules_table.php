@@ -19,7 +19,8 @@ class CreateSchedulesTable extends Migration
             $table->foreign('session_id')->references('id')->on('sessions');
             $table->unsignedBigInteger('stg_id');
             $table->foreign('stg_id')->references('id')->on('subject_teacher_groups');
-            $table->enum('day', ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO']);
+            $table->unsignedBigInteger('day');
+            $table->foreign('day')->references('id')->on('days');
             $table->timestamps();
             $table->softDeletes();
         });
