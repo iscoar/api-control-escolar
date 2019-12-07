@@ -20,4 +20,9 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\Session');
     }
+
+    public function day()
+    {
+        return $this->belongsTo('App\Day');
+    }
 }

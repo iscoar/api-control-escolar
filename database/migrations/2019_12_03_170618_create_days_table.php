@@ -17,6 +17,7 @@ class CreateDaysTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',9);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
