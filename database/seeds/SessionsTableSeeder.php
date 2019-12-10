@@ -44,7 +44,7 @@ class SessionsTableSeeder extends Seeder
         DB::table('sessions')->insert([
             'id' => 6,
             'start_hour' => '19:20',
-            'end_hour' => '16:45',
+            'end_hour' => '20:05',
             'created_at' => now()
         ]);
     }
