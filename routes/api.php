@@ -30,6 +30,7 @@ Route::get('/student/{student_id}/{level_id}/{cycle_id}/payments', 'StudentPayme
 
 
 Route::get('/teacher/{teacher_id}/group/{group_id}/subject/{subject_id}/scores', 'GroupEvaluationLevelController@index');
+Route::get('/teacher/{teacher_id}/group/{group_id}/subject/{subject_id}/level/{gel_id}/scores', 'GroupEvaluationLevelController@scoresByLevel');
 
 Route::get('/teacher/{id}/groups', 'TeacherController@groups');
 Route::get('/teacher/{id}/group/{group_id}/subjects', 'TeacherController@groupSubjects');
