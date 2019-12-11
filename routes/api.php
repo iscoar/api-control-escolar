@@ -29,7 +29,7 @@ Route::get('/student/{id}/{level_id}/payments', 'StudentPaymentController@paymen
 Route::get('/student/{student_id}/{level_id}/{cycle_id}/payments', 'StudentPaymentController@payments_by_cycle');
 
 
-Route::get('/teacher/{teacher_id}/group/{group_id}', 'GroupEvaluationLevelController@index');
+Route::get('/teacher/{teacher_id}/group/{group_id}/subject/{subject_id}/scores', 'GroupEvaluationLevelController@index');
 
 Route::get('/teacher/{id}/groups', 'TeacherController@groups');
 Route::get('/teacher/{id}/group/{group_id}/subjects', 'TeacherController@groupSubjects');
@@ -37,6 +37,6 @@ Route::get('/teacher/{id}/group/{group_id}/subjects', 'TeacherController@groupSu
 Route::get('/teacher/{id}/schedule', 'ScheduleController@teacher_schedule');
 Route::get('/student/{id}/schedule', 'ScheduleController@student_schedule');
 
-Route::get('/student/{id}/absences', 'AbsencesController@show');
-Route::get('/teacher/{id}/{group_id}/students/absences', 'AbsencesController@index');
+Route::get('/student/{id}/absences', 'StudentAbsenceController@show');
+Route::get('/teacher/{id}/{group_id}/students/absences', 'StudentAbsenceController@index');
 
