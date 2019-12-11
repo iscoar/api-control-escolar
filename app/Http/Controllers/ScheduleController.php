@@ -33,13 +33,13 @@ class ScheduleController extends Controller
             ->join('subject_teacher_groups', 'subject_teacher_groups.id', '=', 'schedules.stg_id')
             ->join('groups', 'groups.id', '=', 'subject_teacher_groups.group_id')
             ->join('subjects', 'subjects.id', '=', 'subject_teacher_groups.subject_id')
-            ->select('days.id as day_id','days.name as day_name', DB::raw("CONCAT(sessions.start_hour, '-', sessions.end_hour) as session"),'groups.description as group', 'subjects.name as subject')
+            ->select('days.id as day_id','days.name as day_name','sessions.id as session_id', DB::raw("CONCAT(sessions.start_hour, '-', sessions.end_hour) as session"),'groups.description as group', 'subjects.name as subject')
             ->where([
                 ['subject_teacher_groups.teacher_id', $teacher->id],
                 ['groups.status', 'ACTIVO'],
             ])
             ->get()
-            ->groupBy('session');
+            ->groupBy('session_id');
 
             if($schedule->isNotEmpty())
             {
